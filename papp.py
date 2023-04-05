@@ -24,7 +24,7 @@ def crea_id(efe: int):
           )
      return jsonify(['numero agregado', efe**2])
 
-@app.route('/id/<int:nid>/')
+@app.route('/id/<int:nid>/') # devuelve la informacion a un id asociado
 def getFecha(nid):
      with sqlite3.connect('base.db') as con:
           print('asdf')
