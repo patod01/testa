@@ -6,10 +6,18 @@ from flask import (
 from sys import argv
 import sqlite3, time
 
-con = sqlite3.connect('base.db')
-con.close()
 
 app = Flask(__name__)
+
+data_base = 'base.db'
+
+if not os.path.isfile(data_base):
+     with open('table.sql') as query:
+          query = ''.join(query.readlines())
+          print(query)
+          with sqlite3.connect(data_base) as con:
+               con.execute(query)
+
 
 @app.route('/')
 def home():
@@ -47,6 +55,6 @@ def getFecha(nid):
           return jsonify('you suck.')
 
 if __name__ == '__main__':
-     app.run(debug=True)
+     app.run(debug=True, host="0.0.0.0")
 
 #ned

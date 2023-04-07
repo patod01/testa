@@ -1,0 +1,23 @@
+pull IMG[:TAG]
+create --name NAME -p H_PORT:C_PORT -v VOL:C_FOLDER IMG[:TAG]
+run
+exec
+start
+stop
+rm
+ps
+build
+
+image, volume, container, network
+
+instalacion:
+sudo nano /etc/wsl.conf
+[boot]
+systemd=true
+sudo apt install docker.io -y
+sudo usermod -aG docker $USER
+sudo systemctl start docker
+sudo systemctl enable docker
+apk add docker docker-compose
+rc-update add docker boot
+service start docker
