@@ -9,7 +9,7 @@ import sqlite3, time
 
 app = Flask(__name__)
 
-data_base = 'base.db'
+data_base = 'db/base.db'
 
 if not os.path.isfile(data_base):
      with open('table.sql') as query:
@@ -25,7 +25,7 @@ def home():
 
 @app.route('/<int:efe>/') # inserta una fecha
 def crea_id(efe: int):
-     with sqlite3.connect('base.db') as con:
+     with sqlite3.connect(data_base) as con:
           query = con.execute(
                "INSERT INTO sample (number, date) VALUES (?, ?)",
                ( efe**2, round(time.time()) )
@@ -34,7 +34,7 @@ def crea_id(efe: int):
 
 @app.route('/id/<int:nid>/') # devuelve la informacion a un id asociado
 def getFecha(nid):
-     with sqlite3.connect('base.db') as con:
+     with sqlite3.connect(data_base) as con:
           print('asdf')
           hora = []
           query = con.execute(
@@ -55,6 +55,6 @@ def getFecha(nid):
           return jsonify('you suck.')
 
 if __name__ == '__main__':
-     app.run(debug=True, host="0.0.0.0")
+     app.run(debug=True, host="0.0.0.0", port=int(os.getenv("PORT", 10011)))
 
 #ned

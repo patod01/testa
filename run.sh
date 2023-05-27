@@ -6,6 +6,8 @@ pip install --no-cache-dir -r req.txt
 # python papp.py
 python try.py
 
+# docker run --rm -d --name alfa -p 10011:8080 -v "$(pwd)":/app/db carne
+
 # docker network create alambre
 
 # docker run --rm --network alambre -it --name mac -p 10111:10111 -w /app -v "$(pwd)":/app python:3.11.2-alpine3.17 ash run.sh
